@@ -1,0 +1,69 @@
+{
+  "name": "lisk-manager",
+  "description": "Easily manage your Lisk nodes within a web environment.",
+  "version": "1.0.0-alpha.1",
+  "license": "MIT",
+  "author": "Lemii <lemiidelegate@gmail.com> (https://lisktools.eu)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lemii/lisk-manager"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0",
+    "node-sass": "^4.13.1",
+    "popper.js": "^1.16.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.0",
+    "react-switch": "^5.0.1",
+    "react-toastify": "^5.5.0",
+    "react-toggle": "^4.1.1",
+    "typescript": "~3.7.2",
+    "uuid": "^7.0.2"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-brands-svg-icons": "^5.12.1",
+    "@fortawesome/free-regular-svg-icons": "^5.12.1",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^5.1.3",
+    "@types/react-toastify": "^4.1.0",
+    "@types/react-toggle": "^4.0.2",
+    "@types/uuid": "^7.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "serve": "serve -s build",
+    "clean": "rm -rf node_modules build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
