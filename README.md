@@ -1,6 +1,4 @@
-# Lisk Manager
-
-Easily manage your Lisk nodes within a web environment.
+![Banner Logo](banner.png)
 
 ## Online demo
 
