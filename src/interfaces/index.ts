@@ -1,4 +1,5 @@
 export interface INodeStatus {
+  // 2.x values
   broadhash: string;
   consensus: number;
   currentTime: number;
@@ -16,6 +17,8 @@ export interface INodeStatus {
     received: number;
     total: number;
   };
+  // 3.x values
+  chainMaxHeightFinalized: number;
 }
 
 export interface IFaqEntry {
