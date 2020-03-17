@@ -1,0 +1,105 @@
+$primary: #a3f7bf;
+$dark: #393e46;
+$darker: #222831;
+$light: #fefefe;
+$complementary: #29a19c;
+$success: #a3f7bf;
+$danger: #ff5f5f;
+$warning: #ffd700;
+
+@import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 80%;
+  background-color: $darker;
+}
+
+.scaled-down {
+  transform: scale(0.8);
+}
+.card {
+  background-color: $dark;
+}
+
+.drop {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.drop:hover {
+  color: $light;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.navbar-brand {
+  // text-transform: uppercase;
+  font-weight: 800;
+}
+
+table {
+  color: #ccc !important;
+}
+
+td {
+  width: 50%;
+}
+
+.less-padding {
+  padding: 6px !important;
+}
+
+.icon-mb {
+  margin-bottom: 2px;
+  margin-right: 5px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 12px;
+  text-align: center;
+}
+
+input[type='text'],
+input[type='password'] {
+  border: none;
+  color: $light;
+  background-color: $dark;
+}
+
+input[type='text']:focus,
+input[type='password']:focus {
+  color: $light;
+  background-color: $dark;
+}
+
+.react-toggle {
+  transform: scale(0.8);
+}
+
+.react-toggle--checked .react-toggle-track {
+  background-color: $complementary;
+}
+
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: $primary;
+}
+
+.inherit-link,
+.inherit-link:hover {
+  color: inherit;
+  text-decoration: none;
+}
