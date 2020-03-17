@@ -9,7 +9,7 @@ import { setLocalNodes, getLocalNodes } from '../../utils/storage';
 import { INode } from '../../interfaces';
 
 const serverInit = () => {
-  return { id: uuidv4(), ip: '', label: '' };
+  return { id: uuidv4(), ip: '', label: '', version: '2' };
 };
 
 export default function AddNode(): JSX.Element {

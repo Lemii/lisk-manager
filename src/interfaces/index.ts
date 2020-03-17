@@ -27,6 +27,7 @@ export interface INode {
   id: string;
   ip: string;
   label: string;
+  version: string;
   pubkey?: string;
   password?: string;
 }
