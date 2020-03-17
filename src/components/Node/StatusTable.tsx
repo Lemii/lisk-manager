@@ -142,6 +142,15 @@ export default function StatusTable({
         </tr>
 
         <tr>
+          <td>Height</td>
+          <td>{formatNumber(nodeStatus.height)}</td>
+        </tr>
+
+        <tr>
+          <td>Max height finalized</td>
+          <td>{formatNumber(nodeStatus.chainMaxHeightFinalized)}</td>
+        </tr>
+        <tr>
           <td>Current time</td>
           <td>{formatDate(nodeStatus.currentTime)}</td>
         </tr>
