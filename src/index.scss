@@ -74,16 +74,21 @@ td {
 }
 
 input[type='text'],
-input[type='password'] {
-  border: none;
-  color: $light;
-  background-color: $dark;
+input[type='password'],
+select,
+option {
+  border: none !important;
+  color: $light !important;
+  background-color: $dark !important;
 }
 
 input[type='text']:focus,
-input[type='password']:focus {
-  color: $light;
-  background-color: $dark;
+input[type='password']:focus,
+select:focus,
+option:focus {
+  border: none !important;
+  color: $light !important;
+  background-color: $dark !important;
 }
 
 .react-toggle {

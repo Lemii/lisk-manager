@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX.Element {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
@@ -52,6 +52,23 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
           aria-describedby="label"
           placeholder="My Lisk Server"
         />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="version">
+          <strong>Node Version</strong>
+        </label>
+        <select
+          name="version"
+          value={form.version}
+          onChange={handleChange}
+          className="custom-select"
+          id="version"
+          aria-describedby="version"
+        >
+          <option value="2">Core 2.x</option>
+          <option value="3">Core 3.x</option>
+        </select>
       </div>
 
       <div className="form-group">
