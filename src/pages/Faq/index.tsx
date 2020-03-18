@@ -33,18 +33,22 @@ const entries: IFaqEntry[] = [
     question: `The tool can't detect the Lisk Core version of my node.`,
     answer: (
       <div>
-        This can be caused by multiple things.
+        This can be caused by multiple things:
+        <br />
+        <br />
         <ul>
-          <li>Check if the protocol is correct (eg: http:// instead of https://)</li>
-          <li>Check if the IP address is correct</li>
-          <li>
+          <li className="mb-2">
+            Check if the protocol is correct (eg: http:// instead of https://)
+          </li>
+          <li className="mb-2">Check if the IP address is correct</li>
+          <li className="mb-2">
             Check if the port number is correct (eg: 8000 for mainnet, 7000 for testnet, no port
             number for SSL domains)
           </li>
           <li>
             <strong>
               Non-secure node addresses do not work on websites with a secure https:// domain.
-            </strong>{' '}
+            </strong>
             <br />
             <br />
             This is caused by browsers blocking so called <i>mixed content</i>. Read more about it{' '}
