@@ -60,7 +60,6 @@ export default function Node({ node, methods }: IProps): JSX.Element {
       toast.success(`Forging status set to: ${status}`);
     } catch {
       toast.error('Could not toggle forging. Verify public key and/or password.');
-      // window.alert('Could not toggle forging. Please verify your public key and/or password.');
       setToggleDisabled(false);
     }
   };
