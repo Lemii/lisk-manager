@@ -11,18 +11,30 @@ interface IProps {
 }
 
 export default function Head({ node, methods, nodeStatus, forgingStatus }: IProps): JSX.Element {
-  const status = () => {
-    const consensus: number = nodeStatus ? nodeStatus.consensus : 0;
+  const checkNodeHealth = (): boolean => {
+    if (node.version === '2') {
+      return nodeStatus ? nodeStatus.consensus >= 66 : false;
+    }
 
-    if (consensus >= 66 && forgingStatus) {
+    if (node.version === '3') {
+      return nodeStatus ? !nodeStatus.syncing : false;
+    }
+
+    return false;
+  };
+
+  const status = (): string => {
+    const healthy = checkNodeHealth();
+
+    if (healthy && forgingStatus) {
       return 'success';
     }
 
-    if (consensus >= 66 && forgingStatus === false) {
+    if (healthy && forgingStatus === false) {
       return 'secondary';
     }
 
-    if (consensus >= 66 && forgingStatus === null) {
+    if (healthy && forgingStatus === null) {
       return 'warning';
     }
 
@@ -60,7 +72,7 @@ export default function Head({ node, methods, nodeStatus, forgingStatus }: IProp
         </h5>
 
         <div className="text-muted">
-          <strong>{node.ip}</strong>
+          <strong>{node.ip}</strong> (Core v{node.version || '2'})
         </div>
       </div>
 
@@ -79,8 +91,6 @@ export default function Head({ node, methods, nodeStatus, forgingStatus }: IProp
           <button onClick={() => methods.rename(node)} className="dropdown-item">
             Rename
           </button>
-
-          {/* <button className="dropdown-item">Toggle Forging</button> */}
 
           <button onClick={() => methods.changePubkey(node)} className="dropdown-item">
             Change Public Key

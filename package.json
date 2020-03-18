@@ -1,7 +1,7 @@
 {
   "name": "lisk-manager",
   "description": "Easily manage your Lisk nodes within a web environment.",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.3",
   "license": "MIT",
   "author": "Lemii <lemiidelegate@gmail.com> (https://lisktools.eu)",
   "repository": {

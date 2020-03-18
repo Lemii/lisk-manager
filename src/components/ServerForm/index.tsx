@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { toast } from 'react-toastify';
+
+import { fetchNodeVersion } from '../../utils';
 
 import { INode } from '../../interfaces';
 
@@ -10,9 +13,41 @@ interface IProps {
 }
 
 export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX.Element {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
+
+    if (name === 'ip') {
+      handleIpChange(value);
+    }
+
     setForm({ ...form, [name]: value });
+  };
+
+  const handleIpChange = (ip: string): void => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    if (!ip) {
+      return;
+    }
+
+    const id = setTimeout(async () => {
+      try {
+        const version = await fetchNodeVersion(ip);
+
+        setForm({ ...form, ip, version });
+        toast.info(`Core version ${version}.x.x detected`);
+      } catch {
+        toast.warn(
+          `Could not detect Lisk core version. Verify protocol, IP address and port number.`
+        );
+      }
+    }, 1500);
+
+    setTimeoutId(id);
   };
 
   // Placeholder
@@ -52,6 +87,24 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
           aria-describedby="label"
           placeholder="My Lisk Server"
         />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="version">
+          <strong>Node Version (updated automatically)</strong>
+        </label>
+        <select
+          disabled
+          name="version"
+          value={form.version}
+          className="custom-select text-muted"
+          id="version"
+          aria-describedby="version"
+        >
+          <option value="0">Unknown</option>
+          <option value="2">Core 2.x.x</option>
+          <option value="3">Core 3.x.x</option>
+        </select>
       </div>
 
       <div className="form-group">
@@ -100,7 +153,11 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
         Test <FontAwesomeIcon icon="signal" />
       </button>
 
-      <button type="submit" className="btn btn-primary" disabled={!form.ip || !form.label}>
+      <button
+        type="submit"
+        className="btn btn-primary"
+        disabled={!form.ip || !form.label || form.version === '0'}
+      >
         Save <FontAwesomeIcon icon="save" />
       </button>
     </form>
