@@ -17,37 +17,58 @@ export default function Node({ node, methods }: IProps): JSX.Element {
   const [forgingStatus, setForgingStatus] = useState<boolean | null>(null);
   const [toggleDisabled, setToggleDisabled] = useState<boolean>(false);
 
+  const updateNodeStatus = async () => {
+    try {
+      const data: INodeStatus = await fetchNodeStatus(node.ip);
+      setNodeStatus(data);
+    } catch {
+      if (nodeStatus) {
+        new Notification('Lisk Manager', {
+          body: `Node '${node.label}' is not reachable anymore`
+        });
+      }
+
+      setNodeStatus(null);
+    }
+  };
+
+  const updateForgingStatus = async (check = true) => {
+    if (check && !nodeStatus) {
+      return;
+    }
+
+    try {
+      const data = await fetchForgingStatus(node.ip);
+      const newStatus = data.data.data[0].forging;
+
+      if (forgingStatus && !newStatus) {
+        new Notification('Lisk Manager', {
+          body: `Node '${node.label}' has lost forging status`
+        });
+      }
+
+      setForgingStatus(newStatus);
+    } catch {
+      setForgingStatus(null);
+    }
+  };
+
   useEffect(() => {
-    const updateNodeStatus = async () => {
-      try {
-        const data: INodeStatus = await fetchNodeStatus(node.ip);
-        setNodeStatus(data);
-      } catch {
-        setNodeStatus(null);
-      }
-    };
-
-    const updateForgingStatus = async () => {
-      try {
-        const data = await fetchForgingStatus(node.ip);
-        setForgingStatus(data.data.data[0].forging);
-      } catch {
-        setForgingStatus(null);
-      }
-    };
-
-    updateForgingStatus();
-    updateNodeStatus();
-
-    const intervalId = setInterval(() => {
+    const id = setInterval(() => {
       updateForgingStatus();
       updateNodeStatus();
     }, 10000);
 
     return () => {
-      clearInterval(intervalId);
+      clearInterval(id);
     };
-  }, [node]);
+  }, [node, forgingStatus, nodeStatus]);
+
+  useEffect(() => {
+    updateNodeStatus().then(() => {
+      updateForgingStatus(false);
+    });
+  }, []);
 
   const toggleForging = async (checked: boolean) => {
     setToggleDisabled(true);
