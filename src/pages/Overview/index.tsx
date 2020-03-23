@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Node from '../../components/Node';
 
 import { getLocalNodes, deleteLocalNode, updateLocalnode } from '../../utils/storage';
+import { askNotificationPermission } from '../../utils/notifications';
 import { INode } from '../../interfaces';
 
 export default function Overview(): JSX.Element {
@@ -12,6 +13,7 @@ export default function Overview(): JSX.Element {
 
   useEffect(() => {
     document.title = 'Lisk Manager';
+    askNotificationPermission();
   }, []);
 
   const methods = {

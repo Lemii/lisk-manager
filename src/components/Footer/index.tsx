@@ -7,7 +7,17 @@ export default function Footer(): JSX.Element {
       <hr className="border border-dark" />v{process.env.REACT_APP_VERSION} |{' '}
       <a href="https://github.com/lemii/lisk-manager" target="_blank" rel="noopener noreferrer">
         Source Code <FontAwesomeIcon icon="external-link-alt" />
-      </a>
+      </a>{' '}
+      |{' '}
+      {Notification.permission === 'granted' ? (
+        <span>
+          <FontAwesomeIcon icon="bell" /> Enabled
+        </span>
+      ) : (
+        <span className="text-muted">
+          <FontAwesomeIcon icon="bell-slash" /> Disabled
+        </span>
+      )}
     </footer>
   );
 }
