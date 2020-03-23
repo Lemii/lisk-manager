@@ -13,7 +13,9 @@ import {
   faSignal,
   faPlus,
   faSave,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faBell,
+  faBellSlash
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -28,5 +30,7 @@ library.add(
   faSignal,
   faPlus,
   faSave,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faBell,
+  faBellSlash
 );
