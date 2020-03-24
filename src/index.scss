@@ -75,6 +75,7 @@ td {
 
 input[type='text'],
 input[type='password'],
+input[type='number'],
 select,
 option {
   border: none !important;
@@ -112,4 +113,11 @@ option:focus {
 .inherit-link:hover {
   color: inherit;
   text-decoration: none;
+}
+
+.dropzone {
+  width: 100%;
+  height: 10em;
+  background-color: $dark;
+  text-align: center;
 }

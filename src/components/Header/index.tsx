@@ -19,11 +19,11 @@ export default function Header(): JSX.Element {
                 Add Node
               </Link>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link to="/settings" className="nav-link pointer">
                 Settings
               </Link>
-            </li> */}
+            </li>
             <li className="nav-item">
               <Link to="/faq" className="nav-link pointer">
                 FAQ
