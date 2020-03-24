@@ -34,3 +34,10 @@ export interface INode {
   pubkey?: string;
   password?: string;
 }
+
+export interface IJsonData {
+  nodes: INode[];
+  settings: {
+    interval?: number;
+  };
+}
