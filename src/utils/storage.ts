@@ -1,4 +1,6 @@
-import { INode } from '../interfaces';
+import { saveJsonFile } from '../utils/file-handler';
+
+import { INode, IJsonData } from '../interfaces';
 
 export const getLocalNodes = (): INode[] => {
   const nodes = localStorage.getItem('nodes');
@@ -34,4 +36,36 @@ export const deleteLocalNode = (id: string): void => {
   nodes.splice(index, 1);
 
   setLocalNodes(nodes);
+};
+
+export const setInterval = (amount: any): void => {
+  localStorage.setItem('interval', String(amount));
+};
+
+export const getInterval = (): number => {
+  const amount = localStorage.getItem('interval');
+
+  return amount ? Number(amount) : 10000;
+};
+
+export const exportData = (): void => {
+  const data = { nodes: getLocalNodes(), settings: { interval: getInterval() } };
+
+  saveJsonFile(data);
+};
+
+export const importData = (data: IJsonData): void => {
+  try {
+    if (data.nodes) {
+      setLocalNodes(data.nodes);
+    }
+
+    if (data.settings.interval) {
+      setInterval(data.settings.interval);
+    }
+  } catch {
+    setLocalNodes(getLocalNodes());
+    setInterval(getInterval());
+    throw Error();
+  }
 };
