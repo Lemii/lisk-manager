@@ -50,29 +50,8 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
     setTimeoutId(id);
   };
 
-  // Placeholder
-  const testNode = (e: any): void => {
-    e.preventDefault();
-  };
-
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="ip">
-          <strong>IP address</strong>
-        </label>
-        <input
-          name="ip"
-          value={form.ip}
-          onChange={handleChange}
-          type="text"
-          className="form-control"
-          id="ip"
-          aria-describedby="ip"
-          placeholder="http://104.217.2.11:8000"
-        />
-      </div>
-
       <div className="form-group">
         <label htmlFor="label">
           <strong>Label</strong>
@@ -86,6 +65,22 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
           id="label"
           aria-describedby="label"
           placeholder="My Lisk Server"
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="ip">
+          <strong>IP address</strong>
+        </label>
+        <input
+          name="ip"
+          value={form.ip}
+          onChange={handleChange}
+          type="text"
+          className="form-control"
+          id="ip"
+          aria-describedby="ip"
+          placeholder="http://104.217.2.11:8000"
         />
       </div>
 
@@ -144,14 +139,6 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
           Used to toggle forging
         </small>
       </div>
-
-      <button
-        onClick={testNode}
-        className="btn btn-outline-primary mr-3"
-        disabled={!form.pubkey || !form.password}
-      >
-        Test <FontAwesomeIcon icon="signal" />
-      </button>
 
       <button
         type="submit"

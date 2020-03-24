@@ -91,6 +91,11 @@ option:focus {
   background-color: $dark !important;
 }
 
+.modal-header,
+.modal-body,
+.modal-footer {
+  background-color: $darker;
+}
 .react-toggle {
   transform: scale(0.8);
 }

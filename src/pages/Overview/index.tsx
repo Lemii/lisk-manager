@@ -17,36 +17,31 @@ export default function Overview(): JSX.Element {
   }, []);
 
   const methods = {
-    rename: (node: INode): void => {
-      const label = window.prompt('Please enter a new label', node.label);
-      if (label) {
+    rename: (node: INode, label: string): void => {
+      if (label && label !== node.label) {
         updateLocalnode({ ...node, label });
         setNodes(getLocalNodes());
         toast.success(`Label updated successfully`);
       }
     },
-    changePubkey: (node: INode): void => {
-      const pubkey = window.prompt('Please enter a new public key', node.pubkey);
-      if (pubkey) {
+    changePubkey: (node: INode, pubkey: string): void => {
+      if (pubkey && pubkey !== node.pubkey) {
         updateLocalnode({ ...node, pubkey });
         setNodes(getLocalNodes());
         toast.success(`Public key updated successfully`);
       }
     },
-    changePassword: (node: INode): void => {
-      const password = window.prompt('Please enter a new password', node.password);
-      if (password) {
+    changePassword: (node: INode, password: string): void => {
+      if (password && password !== node.password) {
         updateLocalnode({ ...node, password });
         setNodes(getLocalNodes());
         toast.success(`Password updated successfully`);
       }
     },
     delete: (node: INode): void => {
-      if (window.confirm('Are you sure you want to delete the node?')) {
-        deleteLocalNode(node.id);
-        setNodes(getLocalNodes());
-        toast.success(`Node '${node.label}' removed succesfully`);
-      }
+      deleteLocalNode(node.id);
+      setNodes(getLocalNodes());
+      toast.success(`Node '${node.label}' removed succesfully`);
     }
   };
 
