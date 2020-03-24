@@ -5,6 +5,7 @@ import Head from './Head';
 import StatusTable from './StatusTable';
 
 import { fetchNodeStatus, fetchForgingStatus, toggleForgingStatus } from '../../utils';
+import { getInterval } from '../../utils/storage';
 import { INodeStatus, INode } from '../../interfaces';
 
 interface IProps {
@@ -57,7 +58,7 @@ export default function Node({ node, methods }: IProps): JSX.Element {
     const id = setInterval(() => {
       updateForgingStatus();
       updateNodeStatus();
-    }, 10000);
+    }, getInterval());
 
     return () => {
       clearInterval(id);
