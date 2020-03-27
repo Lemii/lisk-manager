@@ -1,4 +1,6 @@
 import axios from 'axios';
+
+import { decrypt } from './crypto';
 import { INode, INodeStatus } from '../interfaces';
 
 export const fetchNodeStatus = (node: string): Promise<INodeStatus> =>
@@ -9,7 +11,7 @@ export const fetchForgingStatus = (node: string) => axios.get(node + '/api/node/
 export const toggleForgingStatus = (node: INode, checked: boolean) =>
   axios.put(node.ip + '/api/node/status/forging', {
     publicKey: node.pubkey,
-    password: node.password,
+    password: decrypt(node.password!, node.id),
     forging: checked
   });
 
