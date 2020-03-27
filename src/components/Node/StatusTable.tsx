@@ -9,8 +9,8 @@ interface IProps {
   node: INode;
   nodeStatus: INodeStatus;
   forgingStatus: boolean | null;
-  toggleForging: any;
   toggleDisabled: boolean;
+  toggleForging: (checked: boolean) => Promise<void>;
 }
 
 export default function StatusTable({
@@ -28,6 +28,7 @@ export default function StatusTable({
           {forgingStatus !== null ? (
             <td className="pt-0 pb-0 pl-0 align-middle">
               <Switch
+                //@ts-ignore
                 onChange={toggleForging}
                 checked={forgingStatus || false}
                 disabled={

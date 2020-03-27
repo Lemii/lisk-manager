@@ -2,28 +2,28 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { INode } from '../../interfaces';
+import { INode, IUpdateMethod } from '../../interfaces';
 
 interface IProps {
   node: INode;
   body: string;
-  submitHandler: any;
   show: boolean;
-  setShow: any;
   initialValue?: string;
-  type?: string;
   name: string;
+  type?: string;
+  submitHandler: IUpdateMethod;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function OptionModal({
   node,
   body,
-  submitHandler,
   show,
-  setShow,
   initialValue,
+  name,
   type = 'text',
-  name
+  submitHandler,
+  setShow
 }: IProps): JSX.Element {
   const [input, setInput] = useState<string>('');
 
