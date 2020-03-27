@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import OptionModal from '../OptionModal';
 
-import { INode, INodeStatus } from '../../interfaces';
+import { INode, INodeStatus, IUpdateMethods } from '../../interfaces';
 
 interface IProps {
   node: INode;
-  methods: any;
+  methods: IUpdateMethods;
   nodeStatus: INodeStatus | null;
   forgingStatus: boolean | null;
 }

@@ -8,8 +8,8 @@ import { INode } from '../../interfaces';
 
 interface IProps {
   form: INode;
-  setForm: any;
-  handleSubmit: any;
+  setForm: React.Dispatch<React.SetStateAction<INode>>;
+  handleSubmit: (e: React.SyntheticEvent<Element, Event>) => void;
 }
 
 export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX.Element {

@@ -38,7 +38,7 @@ export const deleteLocalNode = (id: string): void => {
   setLocalNodes(nodes);
 };
 
-export const setInterval = (amount: any): void => {
+export const setInterval = (amount: number): void => {
   localStorage.setItem('interval', String(amount));
 };
 
