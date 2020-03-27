@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ServerForm from '../../components/ServerForm';
 
 import { setLocalNodes, getLocalNodes } from '../../utils/storage';
+import { encrypt } from '../../utils/crypto';
 import { INode } from '../../interfaces';
 
 const serverInit = () => {
@@ -22,6 +23,10 @@ export default function AddNode(): JSX.Element {
 
   const handleSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault();
+
+    if (form.password) {
+      form.password = encrypt(form.password, form.id);
+    }
 
     const localNodes = getLocalNodes();
 
