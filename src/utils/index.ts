@@ -1,14 +1,17 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { decrypt } from './crypto';
-import { INode, INodeStatus } from '../interfaces';
+import { INode, INodeStatus, IForgingStatus } from '../interfaces';
 
 export const fetchNodeStatus = (node: string): Promise<INodeStatus> =>
   axios.get(node + '/api/node/status').then(res => res.data.data);
 
 export const fetchForgingStatus = (node: string) => axios.get(node + '/api/node/status/forging');
 
-export const toggleForgingStatus = (node: INode, checked: boolean) =>
+export const toggleForgingStatus = (
+  node: INode,
+  checked: boolean
+): Promise<AxiosResponse<IForgingStatus>> =>
   axios.put(node.ip + '/api/node/status/forging', {
     publicKey: node.pubkey,
     password: decrypt(node.password!, node.id),
