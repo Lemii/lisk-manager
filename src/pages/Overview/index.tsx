@@ -4,9 +4,13 @@ import { toast } from 'react-toastify';
 
 import Node from '../../components/Node';
 
-import { getLocalNodes, deleteLocalNode, updateLocalnode } from '../../utils/storage';
-import { askNotificationPermission } from '../../utils/notifications';
-import { encrypt } from '../../utils/crypto';
+import {
+  getLocalNodes,
+  deleteLocalNode,
+  updateLocalnode,
+  askNotificationPermission,
+  encrypt
+} from '../../utils';
 import { INode } from '../../interfaces';
 
 export default function Overview(): JSX.Element {

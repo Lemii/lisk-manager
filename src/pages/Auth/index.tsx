@@ -9,9 +9,9 @@ import {
   getPasswordHash,
   setPasswordHash,
   removePasswordHash,
-  clearNodePasswords
-} from '../../utils/storage';
-import { hash } from '../../utils/crypto';
+  clearNodePasswords,
+  hash
+} from '../../utils';
 
 export default function Auth(): JSX.Element {
   const [password, setPassword] = useState<string>('');
