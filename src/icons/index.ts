@@ -18,7 +18,10 @@ import {
   faBellSlash,
   faTrashAlt,
   faFileImport,
-  faFileExport
+  faFileExport,
+  faSignInAlt,
+  faSignOutAlt,
+  faUndoAlt
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -38,5 +41,8 @@ library.add(
   faBellSlash,
   faTrashAlt,
   faFileImport,
-  faFileExport
+  faFileExport,
+  faSignInAlt,
+  faSignOutAlt,
+  faUndoAlt
 );
