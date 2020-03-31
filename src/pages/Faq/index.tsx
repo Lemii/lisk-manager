@@ -172,7 +172,8 @@ export default function Faq(): JSX.Element {
 
   return (
     <div className="container text-light">
-      <h5 className="mb-5">Frequently Asked Questions</h5>
+      <h5 className="mb-4">Frequently Asked Questions</h5>
+
       <div className="accordion" id="accordion">
         {entries.map((entry, index) => {
           const id = 'entry-' + index;

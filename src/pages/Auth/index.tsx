@@ -61,10 +61,10 @@ export default function Auth(): JSX.Element {
 
   return (
     <div className="container text-light">
-      <h5 className="mb-5">Authorize</h5>
+      <h5 className="mb-4">Authorize</h5>
 
       <form onSubmit={handleSubmit}>
-        <div className="form-group mb-5">
+        <div className="form-group mb-4">
           <input type="text" className="hidden" autoComplete="application" readOnly />
           <label htmlFor="app-password">
             <strong>Enter password</strong>
