@@ -53,7 +53,7 @@ export const setInterval = (amount: number): void => {
 export const getInterval = (): number => {
   const amount = localStorage.getItem('interval');
 
-  return amount ? Number(amount) : 10000;
+  return Number(amount ? amount : process.env.REACT_APP_DEFAULT_INTERVAL);
 };
 
 export const setPasswordHash = (amount: string): void => {
