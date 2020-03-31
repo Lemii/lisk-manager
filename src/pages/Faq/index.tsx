@@ -7,7 +7,28 @@ import { IFaqEntry } from '../../interfaces';
 
 const entries: IFaqEntry[] = [
   {
-    question: 'What do all these icons mean?',
+    question: 'What is the authorization password for?',
+    answer: (
+      <div>
+        The authorization password is used to encrypt and decrypt the sensitive data that is stored
+        in the browser's storage. It is also used in the intermediate JSON files used for importing
+        / exporting configurations.
+      </div>
+    )
+  },
+
+  {
+    question: 'What if I lose this password?',
+    answer: (
+      <div>
+        If you have lost your old password you can use the reset button to configure a new password.
+        Keep in mind that you will have to re-enter the credentials for each node.
+      </div>
+    )
+  },
+
+  {
+    question: 'What do all these status icons mean?',
     answer: (
       <div>
         <div className="mb-1">
@@ -74,11 +95,11 @@ const entries: IFaqEntry[] = [
   },
 
   {
-    question: 'Is it safe to enter my node data in a tool like this?',
+    question: 'Is it safe to enter sensitive node data in a tool like this?',
     answer: (
       <div>
-        All user data is stored locally on your own device. If you prefer to run the tool locally as
-        well, you can find instructions on how to do so{' '}
+        All node data is stored in an encrypted manner on your local own device. If you prefer to
+        run the tool locally as well, you can find instructions on how to do so{' '}
         <a href="https://github.com/lemii/lisk-manager" target="_blank" rel="noopener noreferrer">
           here
         </a>
@@ -88,7 +109,7 @@ const entries: IFaqEntry[] = [
   },
 
   {
-    question: 'Can I add a node without adding a public key and password?',
+    question: 'Can I add a node without adding a public key and / or password?',
     answer: (
       <div>
         Yes, if no public key and password are entered you can still monitor some elements of the
