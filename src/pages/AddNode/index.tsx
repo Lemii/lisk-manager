@@ -38,7 +38,7 @@ export default function AddNode(): JSX.Element {
 
   return (
     <div className="container text-light">
-      <h5 className="mb-5">Add Node</h5>
+      <h5 className="mb-4">Add Node</h5>
 
       <ServerForm form={form} setForm={setForm} handleSubmit={handleSubmit} />
 

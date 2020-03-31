@@ -7,7 +7,7 @@ export default function NotFound(): JSX.Element {
 
   return (
     <div className="container">
-      <h5 className="text-muted text-center mt-5">404 Not Found</h5>
+      <h5 className="text-muted text-center mt-4">404 Not Found</h5>
     </div>
   );
 }
