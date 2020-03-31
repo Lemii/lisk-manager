@@ -4,8 +4,7 @@ import { toast } from 'react-toastify';
 import Head from './Head';
 import StatusTable from './StatusTable';
 
-import { fetchNodeStatus, fetchForgingStatus, toggleForgingStatus } from '../../utils';
-import { getInterval } from '../../utils/storage';
+import { fetchNodeStatus, fetchForgingStatus, toggleForgingStatus, getInterval } from '../../utils';
 import { INodeStatus, INode, IUpdateMethods } from '../../interfaces';
 
 interface IProps {

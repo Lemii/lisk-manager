@@ -1,4 +1,4 @@
-import { saveJsonFile } from '../utils/file-handler';
+import { saveJsonFile } from '../utils';
 
 import { INode, IJsonData } from '../interfaces';
 
