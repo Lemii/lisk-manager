@@ -11,7 +11,8 @@ import { PasswordContext } from './contexts';
 toast.configure({
   draggable: false,
   position: 'bottom-center',
-  closeOnClick: true
+  closeOnClick: true,
+  pauseOnFocusLoss: false
 });
 
 export default function App() {
