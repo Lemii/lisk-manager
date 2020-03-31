@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Dropzone from './DropZone';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
 
+import { PasswordContext } from '../../contexts';
 import { setInterval, getInterval, exportData, importData } from '../../utils/storage';
 
 export default function Settings(): JSX.Element {
   const [userInterval, setUserInterval] = useState<number>(getInterval());
   const [fileContent, setFileContent] = useState<string | null>(null);
+
+  const { update } = useContext(PasswordContext);
 
   useEffect(() => {
     document.title = 'Settings | Lisk Manager';
@@ -21,18 +24,20 @@ export default function Settings(): JSX.Element {
     }
 
     setInterval(userInterval);
-
     toast.success('Polling interval succesfully updated');
   };
 
-  const handleImport = (): void => {
+  const handleImport = (e: React.SyntheticEvent): void => {
+    e.preventDefault();
+
     if (!fileContent) {
       return;
     }
 
     try {
       importData(JSON.parse(fileContent));
-      toast.success('Data import successful');
+      toast.success('Data import successful, please re-authorize');
+      update(null);
     } catch {
       toast.error('Could not import data');
     }
