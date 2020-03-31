@@ -5,8 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import ServerForm from '../../components/ServerForm';
 
-import { setLocalNodes, getLocalNodes } from '../../utils/storage';
-import { encrypt } from '../../utils/crypto';
+import { setLocalNodes, getLocalNodes, encrypt } from '../../utils';
 import { INode } from '../../interfaces';
 
 const serverInit = () => {
