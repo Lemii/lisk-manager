@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { PasswordContext } from '../../contexts';
+
 export default function Header(): JSX.Element {
+  const { password, update } = useContext(PasswordContext);
+
+  const handleSignout = () => {
+    if (update) {
+      update(null);
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark accent mb-5">
       <div className="container">
@@ -28,6 +38,17 @@ export default function Header(): JSX.Element {
               <Link to="/faq" className="nav-link pointer">
                 FAQ
               </Link>
+            </li>
+            <li className="nav-item">
+              {password ? (
+                <div onClick={handleSignout} className="nav-link pointer">
+                  <FontAwesomeIcon icon="sign-out-alt" />
+                </div>
+              ) : (
+                <Link to="/auth" className="nav-link pointer">
+                  <FontAwesomeIcon icon="sign-in-alt" />
+                </Link>
+              )}
             </li>
           </ul>
         </div>
