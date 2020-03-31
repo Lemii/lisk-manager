@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
 
 import { PasswordContext } from '../../contexts';
-import { setInterval, getInterval, exportData, importData } from '../../utils';
+import { setInterval, getInterval, exportData, importData, removeAllData } from '../../utils';
 
 export default function Settings(): JSX.Element {
   const [userInterval, setUserInterval] = useState<number>(getInterval());
@@ -40,6 +40,18 @@ export default function Settings(): JSX.Element {
       update(null);
     } catch {
       toast.error('Could not import data');
+    }
+  };
+
+  const handleRemoveAll = (e: React.SyntheticEvent): void => {
+    e.preventDefault();
+
+    try {
+      removeAllData();
+      toast.success('Data successfully removed');
+      update(null);
+    } catch {
+      toast.error('Could not remove data');
     }
   };
 
@@ -94,6 +106,18 @@ export default function Settings(): JSX.Element {
 
       <button onClick={handleImport} className="btn btn-sm btn-primary" disabled={!fileContent}>
         Import <FontAwesomeIcon icon="file-import" />
+      </button>
+
+      <hr className="border border-dark my-5" />
+
+      <h5 className="mb-4">Remove all Lisk Manager Data</h5>
+
+      <p className="text-danger">
+        Please note that this will remove ALL Lisk Manager data from your local machine!
+      </p>
+
+      <button className="btn btn-sm btn-danger" onClick={handleRemoveAll}>
+        Remove <FontAwesomeIcon icon="trash-alt" />
       </button>
     </div>
   );
