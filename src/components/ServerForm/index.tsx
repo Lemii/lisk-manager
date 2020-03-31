@@ -142,7 +142,7 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
 
       <button
         type="submit"
-        className="btn btn-primary"
+        className="btn btn-sm btn-primary"
         disabled={!form.ip || !form.label || form.version === '0'}
       >
         Save <FontAwesomeIcon icon="save" />
