@@ -60,8 +60,8 @@ export const setPasswordHash = (amount: string): void => {
   localStorage.setItem('hash', String(amount));
 };
 
-export const getPasswordHash = (): string | null => {
-  return localStorage.getItem('hash');
+export const getPasswordHash = (): string => {
+  return localStorage.getItem('hash')!;
 };
 
 export const removePasswordHash = (): void => {
@@ -69,13 +69,21 @@ export const removePasswordHash = (): void => {
 };
 
 export const exportData = (): void => {
-  const data = { nodes: getLocalNodes(), settings: { interval: getInterval() } };
+  const data = {
+    hash: getPasswordHash(),
+    nodes: getLocalNodes(),
+    settings: { interval: getInterval() }
+  };
 
   saveJsonFile(data);
 };
 
 export const importData = (data: IJsonData): void => {
   try {
+    if (data.hash) {
+      setPasswordHash(data.hash);
+    }
+
     if (data.nodes) {
       setLocalNodes(data.nodes);
     }

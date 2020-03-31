@@ -36,6 +36,7 @@ export interface INode {
 }
 
 export interface IJsonData {
+  hash: string;
   nodes: INode[];
   settings: {
     interval?: number;
