@@ -1,4 +1,4 @@
-const crypto = require('crypto-browserify');
+import crypto from 'crypto';
 
 const algo = 'aes-256-ctr';
 
@@ -14,4 +14,11 @@ export const decrypt = (message: string, passphrase: string): string => {
   let dec = decipher.update(message, 'hex', 'utf8');
   dec += decipher.final('utf8');
   return dec;
+};
+
+export const hash = (data: string): string => {
+  return crypto
+    .createHash('sha256')
+    .update(data)
+    .digest('hex');
 };
