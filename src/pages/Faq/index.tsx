@@ -151,10 +151,13 @@ const entries: IFaqEntry[] = [
           You can support my work by voting for my delegate, or by donating to
           13679271214820914646L.
         </p>
-        <a className="btn btn-outline-primary mr-2" href="lisk://delegates/vote?votes=lemii">
+        <a className="btn btn-sm btn-outline-primary mr-3" href="lisk://delegates/vote?votes=lemii">
           Vote
         </a>{' '}
-        <a className="btn btn-outline-primary" href="lisk://wallet?recipient=13679271214820914646L">
+        <a
+          className="btn btn-sm btn-outline-primary"
+          href="lisk://wallet?recipient=13679271214820914646L"
+        >
           Donate
         </a>
       </div>

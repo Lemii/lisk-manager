@@ -85,11 +85,11 @@ export default function Auth(): JSX.Element {
           </small>
         </div>
 
-        <button type="submit" className="btn btn-primary" disabled={!password.length}>
+        <button type="submit" className="btn btn-sm btn-primary" disabled={!password.length}>
           Proceed <FontAwesomeIcon icon="sign-in-alt" />
         </button>
 
-        <button type="button" onClick={handleReset} className="btn btn-outline-primary ml-3">
+        <button type="button" onClick={handleReset} className="btn btn-sm btn-outline-primary ml-3">
           Reset <FontAwesomeIcon icon="undo-alt" />
         </button>
       </form>
