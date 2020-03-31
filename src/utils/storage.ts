@@ -38,6 +38,14 @@ export const deleteLocalNode = (id: string): void => {
   setLocalNodes(nodes);
 };
 
+export const clearNodePasswords = (): void => {
+  const nodes = getLocalNodes();
+
+  nodes.forEach(node => node.password && delete node.password);
+
+  setLocalNodes(nodes);
+};
+
 export const setInterval = (amount: number): void => {
   localStorage.setItem('interval', String(amount));
 };
@@ -46,6 +54,18 @@ export const getInterval = (): number => {
   const amount = localStorage.getItem('interval');
 
   return amount ? Number(amount) : 10000;
+};
+
+export const setPasswordHash = (amount: string): void => {
+  localStorage.setItem('hash', String(amount));
+};
+
+export const getPasswordHash = (): string | null => {
+  return localStorage.getItem('hash');
+};
+
+export const removePasswordHash = (): void => {
+  localStorage.removeItem('hash');
 };
 
 export const exportData = (): void => {
