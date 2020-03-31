@@ -4,7 +4,7 @@ import Dropzone from './DropZone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
 
-import { setInterval, getInterval, exportData, importData } from '../../utils/storage';
+import { setInterval, getInterval, exportData, importData } from '../../utils';
 
 export default function Settings(): JSX.Element {
   const [userInterval, setUserInterval] = useState<number>(getInterval());
