@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Dropzone from './DropZone';
+import ConfirmModal from '../../components/ConfirmModal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
@@ -10,6 +11,7 @@ import { setInterval, getInterval, exportData, importData, removeAllData } from 
 export default function Settings(): JSX.Element {
   const [userInterval, setUserInterval] = useState<number>(getInterval());
   const [fileContent, setFileContent] = useState<string | null>(null);
+  const [showConfirm, setShowConfirm] = useState<boolean>(false);
 
   const { update } = useContext(PasswordContext);
 
@@ -43,9 +45,7 @@ export default function Settings(): JSX.Element {
     }
   };
 
-  const handleRemoveAll = (e: React.SyntheticEvent): void => {
-    e.preventDefault();
-
+  const handleRemoveAll = (): void => {
     try {
       removeAllData();
       toast.success('Data successfully removed');
@@ -112,13 +112,25 @@ export default function Settings(): JSX.Element {
 
       <h5 className="mb-4">Remove all Lisk Manager Data</h5>
 
-      <p className="text-danger">
-        Please note that this will remove ALL Lisk Manager data from your local machine!
+      <p>
+        Complete removes all Lisk Manager data. This includes:
+        <ul>
+          <li>Node data (id, label, ip, public key, password)</li>
+          <li>Authorization</li>
+          <li>Settings</li>
+        </ul>
       </p>
 
-      <button className="btn btn-sm btn-danger" onClick={handleRemoveAll}>
+      <button className="btn btn-sm btn-primary" onClick={() => setShowConfirm(true)}>
         Remove <FontAwesomeIcon icon="trash-alt" />
       </button>
+
+      <ConfirmModal
+        body="This action will remove ALL Lisk Manager data from your local machine!"
+        confirmHandler={handleRemoveAll}
+        show={showConfirm}
+        setShow={setShowConfirm}
+      />
     </div>
   );
 }
