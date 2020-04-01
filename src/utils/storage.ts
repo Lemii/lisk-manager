@@ -97,3 +97,9 @@ export const importData = (data: IJsonData): void => {
     throw Error();
   }
 };
+
+export const removeAllData = () => {
+  localStorage.removeItem('hash');
+  localStorage.removeItem('nodes');
+  localStorage.removeItem('interval');
+};
