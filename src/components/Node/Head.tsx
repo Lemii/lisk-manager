@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import OptionModal from '../OptionModal';
+import ConfirmModal from '../ConfirmModal';
 
 import { INode, INodeStatus, IUpdateMethods } from '../../interfaces';
 
@@ -140,14 +141,11 @@ export default function Head({ node, methods, nodeStatus, forgingStatus }: IProp
             Delete Node
           </button>
 
-          <OptionModal
-            node={node}
-            body="Confirm node removal"
-            submitHandler={methods.delete}
+          <ConfirmModal
+            body="This action will remove the node"
+            confirmHandler={() => methods.delete(node)}
             show={showDelete}
             setShow={setShowDelete}
-            type="deletion"
-            name="deletion"
           />
         </div>
       </div>

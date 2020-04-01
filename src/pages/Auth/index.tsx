@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { PasswordContext } from '../../contexts';
+import ConfirmModal from '../../components/ConfirmModal';
+
 import {
   getPasswordHash,
   setPasswordHash,
@@ -13,9 +14,12 @@ import {
   hash
 } from '../../utils';
 
+import { PasswordContext } from '../../contexts';
+
 export default function Auth(): JSX.Element {
   const [password, setPassword] = useState<string>('');
   const [redirect, setRedirect] = useState<boolean>(false);
+  const [showConfirm, setShowConfirm] = useState<boolean>(false);
 
   const context = useContext(PasswordContext);
 
@@ -52,11 +56,12 @@ export default function Auth(): JSX.Element {
 
   const handleReset = (): void => {
     setPassword('');
+    setShowConfirm(false);
 
     clearNodePasswords();
     removePasswordHash();
 
-    toast.info('All password data removed successfully');
+    toast.success('All password data removed successfully');
   };
 
   return (
@@ -89,11 +94,21 @@ export default function Auth(): JSX.Element {
           Proceed <FontAwesomeIcon icon="sign-in-alt" />
         </button>
 
-        <button type="button" onClick={handleReset} className="btn btn-sm btn-outline-primary ml-3">
+        <button
+          type="button"
+          onClick={() => setShowConfirm(true)}
+          className="btn btn-sm btn-outline-primary ml-3"
+        >
           Reset <FontAwesomeIcon icon="undo-alt" />
         </button>
       </form>
 
+      <ConfirmModal
+        body="This action will reset all password data"
+        confirmHandler={handleReset}
+        show={showConfirm}
+        setShow={setShowConfirm}
+      />
       {redirect && <Redirect to="/" />}
     </div>
   );
