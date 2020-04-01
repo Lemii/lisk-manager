@@ -60,5 +60,5 @@ export interface IUpdateMethods {
   rename: IUpdateMethod;
   changePubkey: IUpdateMethod;
   changePassword: IUpdateMethod;
-  delete: IUpdateMethod;
+  delete: (node: INode) => void;
 }
