@@ -4,8 +4,13 @@ import { toast } from 'react-toastify';
 
 import Node from '../../components/Node';
 
-import { getLocalNodes, deleteLocalNode, updateLocalnode } from '../../utils/storage';
-import { askNotificationPermission } from '../../utils/notifications';
+import {
+  getLocalNodes,
+  deleteLocalNode,
+  updateLocalnode,
+  askNotificationPermission,
+  encrypt
+} from '../../utils';
 import { INode } from '../../interfaces';
 
 export default function Overview(): JSX.Element {
@@ -33,7 +38,7 @@ export default function Overview(): JSX.Element {
     },
     changePassword: (node: INode, password: string): void => {
       if (password && password !== node.password) {
-        updateLocalnode({ ...node, password });
+        updateLocalnode({ ...node, password: encrypt(password, node.id) });
         setNodes(getLocalNodes());
         toast.success(`Password updated successfully`);
       }

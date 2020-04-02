@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Dropzone from './DropZone';
+import ConfirmModal from '../../components/ConfirmModal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
 
-import { setInterval, getInterval, exportData, importData } from '../../utils/storage';
+import { PasswordContext } from '../../contexts';
+import { setInterval, getInterval, exportData, importData, removeAllData } from '../../utils';
 
 export default function Settings(): JSX.Element {
   const [userInterval, setUserInterval] = useState<number>(getInterval());
   const [fileContent, setFileContent] = useState<string | null>(null);
+  const [showConfirm, setShowConfirm] = useState<boolean>(false);
+
+  const { update } = useContext(PasswordContext);
 
   useEffect(() => {
     document.title = 'Settings | Lisk Manager';
@@ -21,20 +26,32 @@ export default function Settings(): JSX.Element {
     }
 
     setInterval(userInterval);
-
     toast.success('Polling interval succesfully updated');
   };
 
-  const handleImport = (): void => {
+  const handleImport = (e: React.SyntheticEvent): void => {
+    e.preventDefault();
+
     if (!fileContent) {
       return;
     }
 
     try {
       importData(JSON.parse(fileContent));
-      toast.success('Data import successful');
+      toast.success('Data import successful, please re-authorize');
+      update(null);
     } catch {
       toast.error('Could not import data');
+    }
+  };
+
+  const handleRemoveAll = (): void => {
+    try {
+      removeAllData();
+      toast.success('Data successfully removed');
+      update(null);
+    } catch {
+      toast.error('Could not remove data');
     }
   };
 
@@ -90,6 +107,30 @@ export default function Settings(): JSX.Element {
       <button onClick={handleImport} className="btn btn-sm btn-primary" disabled={!fileContent}>
         Import <FontAwesomeIcon icon="file-import" />
       </button>
+
+      <hr className="border border-dark my-5" />
+
+      <h5 className="mb-4">Remove all Lisk Manager Data</h5>
+
+      <p>
+        Complete removes all Lisk Manager data. This includes:
+        <ul>
+          <li>Node data (id, label, ip, public key, password)</li>
+          <li>Authorization</li>
+          <li>Settings</li>
+        </ul>
+      </p>
+
+      <button className="btn btn-sm btn-primary" onClick={() => setShowConfirm(true)}>
+        Remove <FontAwesomeIcon icon="trash-alt" />
+      </button>
+
+      <ConfirmModal
+        body="This action will remove ALL Lisk Manager data from your local machine!"
+        confirmHandler={handleRemoveAll}
+        show={showConfirm}
+        setShow={setShowConfirm}
+      />
     </div>
   );
 }

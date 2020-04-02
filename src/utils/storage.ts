@@ -1,4 +1,4 @@
-import { saveJsonFile } from '../utils/file-handler';
+import { saveJsonFile } from '../utils';
 
 import { INode, IJsonData } from '../interfaces';
 
@@ -38,24 +38,52 @@ export const deleteLocalNode = (id: string): void => {
   setLocalNodes(nodes);
 };
 
-export const setInterval = (amount: any): void => {
+export const clearNodePasswords = (): void => {
+  const nodes = getLocalNodes();
+
+  nodes.forEach(node => node.password && delete node.password);
+
+  setLocalNodes(nodes);
+};
+
+export const setInterval = (amount: number): void => {
   localStorage.setItem('interval', String(amount));
 };
 
 export const getInterval = (): number => {
   const amount = localStorage.getItem('interval');
 
-  return amount ? Number(amount) : 10000;
+  return Number(amount ? amount : process.env.REACT_APP_DEFAULT_INTERVAL);
+};
+
+export const setPasswordHash = (amount: string): void => {
+  localStorage.setItem('hash', String(amount));
+};
+
+export const getPasswordHash = (): string => {
+  return localStorage.getItem('hash')!;
+};
+
+export const removePasswordHash = (): void => {
+  localStorage.removeItem('hash');
 };
 
 export const exportData = (): void => {
-  const data = { nodes: getLocalNodes(), settings: { interval: getInterval() } };
+  const data = {
+    hash: getPasswordHash(),
+    nodes: getLocalNodes(),
+    settings: { interval: getInterval() }
+  };
 
   saveJsonFile(data);
 };
 
 export const importData = (data: IJsonData): void => {
   try {
+    if (data.hash) {
+      setPasswordHash(data.hash);
+    }
+
     if (data.nodes) {
       setLocalNodes(data.nodes);
     }
@@ -68,4 +96,10 @@ export const importData = (data: IJsonData): void => {
     setInterval(getInterval());
     throw Error();
   }
+};
+
+export const removeAllData = () => {
+  localStorage.removeItem('hash');
+  localStorage.removeItem('nodes');
+  localStorage.removeItem('interval');
 };

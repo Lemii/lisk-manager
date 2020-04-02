@@ -36,8 +36,29 @@ export interface INode {
 }
 
 export interface IJsonData {
+  hash: string;
   nodes: INode[];
   settings: {
     interval?: number;
   };
+}
+
+export interface IForgingStatus {
+  meta: {};
+  data: {
+    forging: boolean;
+    publicKey: string;
+  }[];
+  links: {};
+}
+
+export interface IUpdateMethod {
+  (node: INode, label: string): void;
+}
+
+export interface IUpdateMethods {
+  rename: IUpdateMethod;
+  changePubkey: IUpdateMethod;
+  changePassword: IUpdateMethod;
+  delete: (node: INode) => void;
 }

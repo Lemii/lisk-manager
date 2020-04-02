@@ -4,13 +4,12 @@ import { toast } from 'react-toastify';
 import Head from './Head';
 import StatusTable from './StatusTable';
 
-import { fetchNodeStatus, fetchForgingStatus, toggleForgingStatus } from '../../utils';
-import { getInterval } from '../../utils/storage';
-import { INodeStatus, INode } from '../../interfaces';
+import { fetchNodeStatus, fetchForgingStatus, toggleForgingStatus, getInterval } from '../../utils';
+import { INodeStatus, INode, IUpdateMethods } from '../../interfaces';
 
 interface IProps {
   node: INode;
-  methods: any;
+  methods: IUpdateMethods;
 }
 
 export default function Node({ node, methods }: IProps): JSX.Element {

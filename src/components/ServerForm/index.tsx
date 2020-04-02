@@ -8,8 +8,8 @@ import { INode } from '../../interfaces';
 
 interface IProps {
   form: INode;
-  setForm: any;
-  handleSubmit: any;
+  setForm: React.Dispatch<React.SetStateAction<INode>>;
+  handleSubmit: (e: React.SyntheticEvent<Element, Event>) => void;
 }
 
 export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX.Element {
@@ -142,7 +142,7 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
 
       <button
         type="submit"
-        className="btn btn-primary"
+        className="btn btn-sm btn-primary"
         disabled={!form.ip || !form.label || form.version === '0'}
       >
         Save <FontAwesomeIcon icon="save" />
