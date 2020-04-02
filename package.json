@@ -1,7 +1,7 @@
 {
   "name": "lisk-manager",
   "description": "Easily manage your Lisk nodes within a web environment.",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0",
   "license": "MIT",
   "author": "Lemii <lemiidelegate@gmail.com> (https://lisktools.eu)",
   "repository": {
@@ -25,7 +25,7 @@
     "react-switch": "^5.0.1",
     "react-toastify": "^5.5.0",
     "react-toggle": "^4.1.1",
-    "typescript": "~3.7.2",
+    "typescript": "^3.8.3",
     "uuid": "^7.0.2"
   },
   "devDependencies": {
