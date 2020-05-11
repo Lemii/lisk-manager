@@ -35,8 +35,8 @@ export default function Header(): JSX.Element {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/faq" className="nav-link pointer">
-                FAQ
+              <Link to="/docs" className="nav-link pointer">
+                Docs
               </Link>
             </li>
             <li className="nav-item">
