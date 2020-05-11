@@ -131,14 +131,14 @@ export default function Node({ node, methods }: IProps): JSX.Element {
               toggleDisabled={toggleDisabled}
             />
           ) : (
-            <p className="text-center text-danger mt-4">Connection error</p>
+            <p className="text-center text-danger mt-4">Lisk Core connection error</p>
           )}
 
           {systemInfo ? (
             <Bars node={node} systemInfo={systemInfo} />
           ) : (
             <div className="text-muted text-center">
-              Could not fetch system info. Read more <Link to="/faq">here</Link>.
+              Could not fetch system info. More info <Link to="/faq">here</Link>.
             </div>
           )}
         </div>
