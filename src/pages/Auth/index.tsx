@@ -25,12 +25,7 @@ export default function Auth(): JSX.Element {
 
   useEffect(() => {
     document.title = 'Authorize | Lisk Manager';
-
-    if (process.env.NODE_ENV === 'development') {
-      context.update('test');
-      setRedirect(true);
-    }
-  }, [context]);
+  }, []);
 
   const handleSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault();

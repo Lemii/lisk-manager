@@ -62,34 +62,3 @@ export interface IUpdateMethods {
   changePassword: IUpdateMethod;
   delete: (node: INode) => void;
 }
-
-export interface ISystemInfo {
-  status: number;
-  message: string;
-  data: {
-    hostname: string;
-    loadAverage: number[];
-    uptime: number;
-    memory: {
-      total: number;
-      free: number;
-    };
-    disk: {
-      total: number;
-      free: number;
-    };
-    cpus: {
-      model: string;
-      speed: number;
-      times: {
-        user: number;
-        nice: number;
-        sys: number;
-        idle: number;
-        irq: number;
-      };
-    }[];
-    type: string;
-    release: string;
-  };
-}
