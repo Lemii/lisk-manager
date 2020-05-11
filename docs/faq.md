@@ -35,7 +35,7 @@ Yes, if no public key and password are entered you can still monitor some elemen
 
 ### I keep getting the error 'Could not toggle forging.'
 
-This means that your public key and / or password (used to encrypt your passphrase) is incorrect. Press the ![Bars Icon](./assets/icon-bars.png) icon to open up the node menu, enter the correct credentials, and try again.
+This means that your public key and / or password (used to encrypt your passphrase) is incorrect. Press the ![Bars Icon](./assets/icon-bar.png) icon to open up the node menu, enter the correct credentials, and try again.
 
 ### Can I contribute to this software?
 
