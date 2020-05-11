@@ -14,11 +14,13 @@ interface IProps {
 
 export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX.Element {
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  const [manualVersion, setManualVersion] = useState<boolean>(false);
+  const [ignoreErrors, setIgnoreErrors] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
 
-    if (name === 'ip') {
+    if (name === 'ip' && !manualVersion) {
       handleIpChange(value);
     }
 
@@ -48,6 +50,11 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
     }, 1500);
 
     setTimeoutId(id);
+  };
+
+  const handleErrorIgnore = () => {
+    setManualVersion(!ignoreErrors);
+    setIgnoreErrors(!ignoreErrors);
   };
 
   return (
@@ -86,20 +93,35 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
 
       <div className="form-group">
         <label htmlFor="version">
-          <strong>Node Version (updated automatically)</strong>
+          <strong>Node Version (detected automagically)</strong>
         </label>
         <select
-          disabled
+          disabled={!manualVersion}
           name="version"
           value={form.version}
-          className="custom-select text-muted"
+          className={`custom-select ${!manualVersion && 'text-muted'}`}
           id="version"
           aria-describedby="version"
+          {...(manualVersion && { onChange: handleChange })}
         >
           <option value="0">Unknown</option>
           <option value="2">Core 2.x.x</option>
           <option value="3">Core 3.x.x</option>
         </select>
+
+        <div className="form-check mt-2">
+          <input
+            disabled={ignoreErrors}
+            className="form-check-input"
+            type="checkbox"
+            checked={manualVersion}
+            id="manual-check"
+            onChange={() => setManualVersion(!manualVersion)}
+          />
+          <label className="form-check-label" htmlFor="manual-check">
+            Manual selection
+          </label>
+        </div>
       </div>
 
       <div className="form-group">
@@ -121,7 +143,7 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
         </small>
       </div>
 
-      <div className="form-group mb-5">
+      <div className="form-group">
         <label htmlFor="password">
           <strong>Encryption Password</strong> (optional)
         </label>
@@ -140,12 +162,25 @@ export default function ServerForm({ form, setForm, handleSubmit }: IProps): JSX
         </small>
       </div>
 
+      <div className="form-check">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          checked={ignoreErrors}
+          id="ignore-errors"
+          onChange={handleErrorIgnore}
+        />
+        <label className="form-check-label" htmlFor="ignore-errors">
+          Ignore validation errors
+        </label>
+      </div>
+
       <button
         type="submit"
-        className="btn btn-sm btn-primary"
+        className="btn btn-sm btn-primary mt-4"
         disabled={!form.ip || !form.label || form.version === '0'}
       >
-        Save <FontAwesomeIcon icon="save" />
+        Add Node <FontAwesomeIcon icon="save" />
       </button>
     </form>
   );
