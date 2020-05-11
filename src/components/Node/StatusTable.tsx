@@ -175,5 +175,23 @@ export default function StatusTable({
     </table>
   );
 
-  return node.version === '3' ? <CoreV3Table /> : <CoreV2Table />;
+  const FallbackTable = () => (
+    <table className="table">
+      <tbody>
+        <tr>
+          <td>Something went wrong</td>
+        </tr>
+      </tbody>
+    </table>
+  );
+
+  const output = () => {
+    try {
+      return node.version === '3' ? <CoreV3Table /> : <CoreV2Table />;
+    } catch {
+      return <FallbackTable />;
+    }
+  };
+
+  return output();
 }
