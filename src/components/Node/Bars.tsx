@@ -52,12 +52,12 @@ export default function Bars({ node, systemInfo }: IProps): JSX.Element {
   /* Initialize the bars (once) and store the elements in state */
   useEffect(() => {
     try {
-      const avg1 = new ProgressBar.Line(`#test_${node.id}_avg-1`, barStyle);
-      const avg2 = new ProgressBar.Line(`#test_${node.id}_avg-2`, barStyle);
-      const avg3 = new ProgressBar.Line(`#test_${node.id}_avg-3`, barStyle);
+      const avg1 = new ProgressBar.Line(`#line_${node.id}_avg-1`, barStyle);
+      const avg2 = new ProgressBar.Line(`#line_${node.id}_avg-2`, barStyle);
+      const avg3 = new ProgressBar.Line(`#line_${node.id}_avg-3`, barStyle);
 
-      const mem = new ProgressBar.Circle(`#test_${node.id}_mem`, circleStyle);
-      const hdd = new ProgressBar.Circle(`#test_${node.id}_hdd`, circleStyle);
+      const mem = new ProgressBar.Circle(`#circle_${node.id}_mem`, circleStyle);
+      const hdd = new ProgressBar.Circle(`#circle_${node.id}_hdd`, circleStyle);
 
       const bars = { avg1, avg2, avg3, mem, hdd };
 
@@ -93,9 +93,9 @@ export default function Bars({ node, systemInfo }: IProps): JSX.Element {
   return (
     <div className="w-100">
       <p className="text-center mb-0">Load Averages (1 / 5 / 15 min)</p>
-      <div className="bar" id={'test_' + node.id + '_avg-1'}></div>
-      <div className="bar" id={'test_' + node.id + '_avg-2'}></div>
-      <div className="bar" id={'test_' + node.id + '_avg-3'}></div>
+      <div className="bar" id={'line_' + node.id + '_avg-1'}></div>
+      <div className="bar" id={'line_' + node.id + '_avg-2'}></div>
+      <div className="bar" id={'line_' + node.id + '_avg-3'}></div>
 
       <div className="row mt-5">
         <div className="col">
@@ -108,7 +108,7 @@ export default function Bars({ node, systemInfo }: IProps): JSX.Element {
             </small>
           </p>
 
-          <div id={'test_' + node.id + '_mem'}></div>
+          <div id={'circle_' + node.id + '_mem'}></div>
         </div>
         <div className="col">
           <p className="text-center mb-2">
@@ -120,7 +120,7 @@ export default function Bars({ node, systemInfo }: IProps): JSX.Element {
             </small>
           </p>
 
-          <div id={'test_' + node.id + '_hdd'}></div>
+          <div id={'circle_' + node.id + '_hdd'}></div>
         </div>
       </div>
     </div>
