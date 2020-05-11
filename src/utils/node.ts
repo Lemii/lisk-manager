@@ -1,10 +1,14 @@
 import axios, { AxiosResponse } from 'axios';
 
 import { decrypt } from './crypto';
-import { INode, INodeStatus, IForgingStatus } from '../interfaces';
+import { INode, INodeStatus, IForgingStatus, ISystemInfo } from '../interfaces';
 
 export const fetchNodeStatus = (node: string): Promise<INodeStatus> =>
-  axios.get(node + '/api/node/status').then(res => res.data.data);
+  axios.get(node + '/api/node/status').then((res) => res.data.data);
+
+export const fetchSystemInfo = (node: string): Promise<ISystemInfo> => {
+  return axios.get(node.split(':')[1] + ':8765/system').then((res) => res.data);
+};
 
 export const fetchForgingStatus = (node: string) => axios.get(node + '/api/node/status/forging');
 
