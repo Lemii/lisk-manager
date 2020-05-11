@@ -138,7 +138,7 @@ export default function Node({ node, methods }: IProps): JSX.Element {
             <Bars node={node} systemInfo={systemInfo} />
           ) : (
             <div className="text-muted text-center">
-              Could not fetch system info. More info <Link to="/faq">here</Link>.
+              Could not fetch system info. More info <Link to="/docs">here</Link>.
             </div>
           )}
         </div>
