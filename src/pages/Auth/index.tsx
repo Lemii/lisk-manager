@@ -91,7 +91,7 @@ export default function Auth(): JSX.Element {
             autoComplete="new-password"
           />
           <small id="app-password-help" className="form-text text-muted">
-            Used to encrypt and decrypt sensitive data. Read more <Link to="/faq">here</Link>.
+            Used to encrypt and decrypt sensitive data. Read more <Link to="/docs">here</Link>.
           </small>
         </div>
 
