@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Overview from '../pages/Overview';
 import AddNode from '../pages/AddNode';
 import Settings from '../pages/Settings';
-import Faq from '../pages/Faq';
+import Docs from '../pages/Docs';
 import NotFound from '../pages/NotFound';
 import Auth from '../pages/Auth';
 
@@ -17,7 +17,7 @@ const Routes: React.FC = () => {
   const PrivateRoute = ({ component: Component, ...rest }: any) => (
     <Route
       {...rest}
-      render={props => (password ? <Component {...props} /> : <Redirect to="/auth" />)}
+      render={(props) => (password ? <Component {...props} /> : <Redirect to="/auth" />)}
     />
   );
 
@@ -27,7 +27,7 @@ const Routes: React.FC = () => {
       <PrivateRoute exact path="/" component={Overview} />
       <PrivateRoute exact path="/add" component={AddNode} />
       <PrivateRoute exact path="/settings" component={Settings} />
-      <Route exact path="/faq" component={Faq} />
+      <Route exact path="/docs" component={Docs} />
       <Route component={NotFound} />
     </Switch>
   );
