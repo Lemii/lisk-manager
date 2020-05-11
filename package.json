@@ -16,6 +16,7 @@
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "popper.js": "^1.16.1",
+    "progressbar.js": "git://github.com/Zellerich/progressbar.js.git#0978bd7a45c1e1fcc8cf9b0890caddb5362941f6",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.13.0",

@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 import Head from './Head';
 import StatusTable from './StatusTable';
+import Bars from './Bars';
 
-import { fetchNodeStatus, fetchForgingStatus, toggleForgingStatus, getInterval } from '../../utils';
-import { INodeStatus, INode, IUpdateMethods } from '../../interfaces';
+import {
+  fetchNodeStatus,
+  fetchSystemInfo,
+  fetchForgingStatus,
+  toggleForgingStatus,
+  getInterval
+} from '../../utils';
+import { INodeStatus, INode, IUpdateMethods, ISystemInfo } from '../../interfaces';
 
 interface IProps {
   node: INode;
@@ -14,6 +22,7 @@ interface IProps {
 
 export default function Node({ node, methods }: IProps): JSX.Element {
   const [nodeStatus, setNodeStatus] = useState<INodeStatus | null>(null);
+  const [systemInfo, setSystemInfo] = useState<ISystemInfo | null>(null);
   const [forgingStatus, setForgingStatus] = useState<boolean | null>(null);
   const [toggleDisabled, setToggleDisabled] = useState<boolean>(false);
 
@@ -29,6 +38,21 @@ export default function Node({ node, methods }: IProps): JSX.Element {
       }
 
       setNodeStatus(null);
+    }
+  };
+
+  const updateSystemInfo = async () => {
+    try {
+      const data: ISystemInfo = await fetchSystemInfo(node.ip);
+      setSystemInfo(data);
+    } catch {
+      if (systemInfo) {
+        new Notification('Lisk Manager', {
+          body: `Failed to fetch system info for node '${node.label}'`
+        });
+      }
+
+      setSystemInfo(null);
     }
   };
 
@@ -57,6 +81,7 @@ export default function Node({ node, methods }: IProps): JSX.Element {
     const id = setInterval(() => {
       updateForgingStatus();
       updateNodeStatus();
+      updateSystemInfo();
     }, getInterval());
 
     return () => {
@@ -68,6 +93,7 @@ export default function Node({ node, methods }: IProps): JSX.Element {
     updateNodeStatus().then(() => {
       updateForgingStatus(false);
     });
+    updateSystemInfo();
   }, []);
 
   const toggleForging = async (checked: boolean) => {
@@ -87,7 +113,7 @@ export default function Node({ node, methods }: IProps): JSX.Element {
 
   return (
     <div className="text-light col-sm-12 col-md-6 col-lg-4 my-4">
-      <div className={`card accent`}>
+      <div className="card accent">
         <div className="card-body">
           <Head
             node={node}
@@ -106,6 +132,14 @@ export default function Node({ node, methods }: IProps): JSX.Element {
             />
           ) : (
             <p className="text-center text-danger mt-4">Connection error</p>
+          )}
+
+          {systemInfo ? (
+            <Bars node={node} systemInfo={systemInfo} />
+          ) : (
+            <div className="text-muted text-center">
+              Could not fetch system info. Read more <Link to="/faq">here</Link>.
+            </div>
           )}
         </div>
       </div>

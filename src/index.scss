@@ -125,3 +125,23 @@ option:focus {
 .hidden {
   display: none;
 }
+
+.bar {
+  margin-bottom: 2em;
+  height: 0.5em;
+}
+
+.bar__label {
+  color: #ccc !important;
+  margin-top: 1.7em !important;
+  text-align: left !important;
+}
+
+.circle__label {
+  color: #ccc !important;
+  text-align: left !important;
+}
+
+.semi-light {
+  color: #ccc !important;
+}
